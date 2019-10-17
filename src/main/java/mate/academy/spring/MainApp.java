@@ -1,12 +1,13 @@
 package mate.academy.spring;
 
-import mate.academy.spring.config.AppConfig;
-import mate.academy.spring.entity.User;
-import mate.academy.spring.service.UserService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.sql.SQLException;
 import java.util.List;
+import mate.academy.spring.config.AppConfig;
+import mate.academy.spring.entity.Book;
+import mate.academy.spring.entity.User;
+import mate.academy.spring.service.BookService;
+import mate.academy.spring.service.UserService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainApp {
     public static void main(String[] args) throws SQLException {
@@ -21,13 +22,27 @@ public class MainApp {
         userService.add(new User("Sameer", "Singh", "sameer.singh@example.com"));
         userService.add(new User("Paul", "Smith", "paul.smith@example.com"));
 
-        // Get Users
+        // Get Users, Books
         List<User> users = userService.listUsers();
         for (User user : users) {
             System.out.println("Id = " + user.getId());
             System.out.println("First Name = " + user.getFirstName());
             System.out.println("Last Name = " + user.getLastName());
             System.out.println("Email = " + user.getEmail());
+            System.out.println();
+        }
+
+        BookService bookService = context.getBean(BookService.class);
+
+        bookService.add(new Book("book1", 1973, 1.11));
+        bookService.add(new Book("book1", 1974, 1.12));
+        bookService.add(new Book("book1", 1975, 1.13));
+
+        List<Book> books = bookService.listBooks();
+        for (Book book : books) {
+            System.out.println("Id = " + book.getId());
+            System.out.println("Publishing Year = " + book.getYear());
+            System.out.println("Price = " + book.getPrice());
             System.out.println();
         }
 

@@ -1,10 +1,16 @@
 package mate.academy.spring.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +30,11 @@ public class Book {
     @Column(name = "price")
     private Double price;
 
-    //TODO: OneToMany List<Author> authors
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "books_authors",
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+    List<Author> authors = new ArrayList<>();
 
     public Book() {}
 
@@ -64,5 +74,13 @@ public class Book {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 }

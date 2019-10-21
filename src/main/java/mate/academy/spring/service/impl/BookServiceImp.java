@@ -15,12 +15,20 @@ public class BookServiceImp implements BookService {
     private BookDao bookDao;
 
     @Transactional
+    @Override
     public void add(Book book) {
         bookDao.add(book);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
+    @Override
     public List<Book> listBooks() {
         return bookDao.listBooks();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Book> findByTitle(String title) {
+        return bookDao.findByTitle(title);
     }
 }

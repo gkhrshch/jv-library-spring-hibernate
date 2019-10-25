@@ -21,7 +21,6 @@
         <th>Price</th>
         <th>Info</th>
         <th>Authors</th>
-        <th>Rent active</th>
         <th>Close Rent</th>
     </tr>
     <%--@elvariable id="rentBooks" type="java.util.List"--%>
@@ -34,7 +33,6 @@
         <td>
             <a href="${pageContext.request.contextPath}/book/${book.id}">Info</a>
         </td>
-        <td>${book.authors}</td>
         <td>${book.authors}</td>
         <td>
             <a href="${pageContext.request.contextPath}/rent/returnbook?book_id=${book.id}">Return</a>

@@ -1,19 +1,20 @@
 package mate.academy.spring.controller;
 
+import javax.annotation.PostConstruct;
 import mate.academy.spring.entity.Author;
 import mate.academy.spring.entity.Book;
+import mate.academy.spring.entity.Role;
 import mate.academy.spring.entity.User;
 import mate.academy.spring.service.AuthorService;
 import mate.academy.spring.service.BookService;
+import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
-@Controller
-@RequestMapping("/injector")
-public class InjectDataController {
+@Component
+public class Injector {
 
     @Autowired
     private BookService bookService;
@@ -21,9 +22,27 @@ public class InjectDataController {
     private AuthorService authorService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
-    @GetMapping("/inject")
-    public String injectData() {
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    @PostConstruct
+    public void injectData() {
+        Role adminRole = new Role();
+        adminRole.setRoleName("ROLE_ADMIN");
+        Role userRole = new Role();
+        userRole.setRoleName("ROLE_USER");
+        roleService.add(adminRole);
+        roleService.add(userRole);
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(encoder.encode("admin"));
+        admin.setEmail("admin@admin.com");
+        userService.addAdmin(admin);
+
         Author author1 = new Author("name1", "surname1");
         Author author2 = new Author("name2", "surname2");
         Author author3 = new Author("name3", "surname3");
@@ -37,7 +56,5 @@ public class InjectDataController {
         bookService.add(book1);
         bookService.add(book2);
         bookService.add(book3);
-        userService.add(new User("Sunil", "Bora", "suni.bora@example.com"));
-        return "forward:/book/all";
     }
 }

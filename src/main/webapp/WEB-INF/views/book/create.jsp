@@ -30,7 +30,7 @@
             <td>
                 <button type="submit">Confirm</button><br>
                 <br>
-                <a href="${pageContext.request.contextPath}/book/">all books</a>
+                <a href="${pageContext.request.contextPath}/book/all">all books</a>
             </td>
         </tr>
     </table>

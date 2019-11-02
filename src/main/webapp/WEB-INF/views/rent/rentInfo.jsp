@@ -12,6 +12,9 @@
     <title>Rent info</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/book/add">Add new book</a>
+<a href="${pageContext.request.contextPath}/book/all">All books</a>
+<a href="${pageContext.request.contextPath}/rent/rents">Rented Books</a>
 <h2>Rent info page</h2>
 <table border="2">
     <tr>

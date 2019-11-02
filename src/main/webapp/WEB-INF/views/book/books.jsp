@@ -1,11 +1,4 @@
 
-<%--
-  Created by IntelliJ IDEA.
-  User: username
-  Date: 22.10.2019
-  Time: 21:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -14,9 +7,9 @@
 </head>
 <body>
 <header>
-    <a href="${pageContext.request.contextPath}/injector/inject">Inject data</a>
     <a href="${pageContext.request.contextPath}/book/add">Add new book</a>
-    <a href="${pageContext.request.contextPath}/rent/rents">Rents by User id=1</a>
+    <a href="${pageContext.request.contextPath}/book/all">All books</a>
+    <a href="${pageContext.request.contextPath}/rent/rents">Rented Books</a>
 </header>
 <div align="center">
     <h2> Select what you want to buy</h2>

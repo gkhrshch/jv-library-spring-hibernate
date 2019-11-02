@@ -13,9 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email", name = "uniqueEmailConstraint"),
+        @UniqueConstraint(columnNames = "username", name = "uniqueUsernameConstraint")})
 public class User {
 
     @Id
@@ -28,13 +31,13 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "username", unique = true)
+    @Column(name = "username")
     private String username;
 
-    @Column(length = 5000)
+    @Column(length = 1000)
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

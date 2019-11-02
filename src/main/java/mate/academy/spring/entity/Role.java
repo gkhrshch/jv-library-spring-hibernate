@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "role_name", name = "uniqueRoleNameConstraint")})
 public class Role {
 
     @Id
@@ -16,7 +18,7 @@ public class Role {
     @Column(name = "role_id")
     private Long id;
 
-    @Column(name = "role_name", unique = true)
+    @Column(name = "role_name")
     private String roleName;
 
     public Role() {}

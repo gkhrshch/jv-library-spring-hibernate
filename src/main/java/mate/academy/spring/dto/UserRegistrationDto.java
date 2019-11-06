@@ -2,8 +2,8 @@ package mate.academy.spring.dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import mate.academy.spring.annotations.PasswordMatches;
-import mate.academy.spring.annotations.ValidEmail;
+import mate.academy.spring.validators.PasswordMatches;
+import mate.academy.spring.validators.ValidEmail;
 
 @PasswordMatches
 public class UserRegistrationDto {

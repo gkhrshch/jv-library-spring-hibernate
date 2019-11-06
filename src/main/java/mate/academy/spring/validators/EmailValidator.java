@@ -1,4 +1,4 @@
-package mate.academy.spring.annotations;
+package mate.academy.spring.validators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

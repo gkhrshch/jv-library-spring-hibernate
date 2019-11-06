@@ -1,4 +1,4 @@
-package mate.academy.spring.annotations.uniqueconstraint;
+package mate.academy.spring.validators.uniqueconstraint;
 
 public @interface Table {
     /**
